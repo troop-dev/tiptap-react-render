@@ -14,7 +14,7 @@ const TextRender: NodeRenderer = (props: NodeProps) => {
   let style: React.CSSProperties = {}
 
   // dynamically process text marks
-  props.node?.marks && props.node.marks.forEach(mark => {
+  props.node.marks && props.node.marks.forEach(mark => {
     switch (mark.type) {
       case 'bold':
         style.fontWeight = 'bold'

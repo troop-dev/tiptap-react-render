@@ -15,7 +15,7 @@ export default function TipTapRender(props: {node: TipTapNode, mapping: NodeHand
       <TipTapRender
         node={child}
         mapping={mapping}
-        key={`${child?.type}-${ix}`}
+        key={`${child.type}-${ix}`}
       />
     )
   })
