@@ -9,13 +9,25 @@ This tool enables rendering TipTap JSON payloads in React clients without embedd
 
 ### Usage
 ```typescript
-// create handler components
+// handle the document
 const doc: NodeHandler = (props) => (<>{props.children}</>)
-const paragraph: NodeHandler = (props) => (<p>{props.children}</p>)
-const text: NodeHandler = (props) => (<span>{props.node.text}</span>)
-const img: NodeHandler = (props) => (<img src={props.node.src} />)
+// handle a paragraph
+const paragraph: NodeHandler = (props) => {
+  return <p>{props.children}</p>
+}
+// handle text
+const text: NodeHandler = (props) => {
+  // you could process text marks here from props.node.marks ...
+  return <span>{props.node.text}</span>
+}
+// handle an image
+const img: NodeHandler = (props) => {
+  const { src, alt, title } = props.node;
+  return <><img src={src} alt={alt} title={title} /></>
+}
 
 // create a handlers wrapper
+
 const handlers: NodeHandlers = {
   "doc": doc,
   "text": text,
