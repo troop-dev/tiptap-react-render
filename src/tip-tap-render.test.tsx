@@ -53,19 +53,18 @@ describe("TipTapRender", () => {
       "text": text,
       "img": img,
     }
-    // define a shallow tip tap node
-
+    // make a text node
     const child1: TipTapNode = {
       type: "text",
       text: "hello"
     }
-
+    // make an image node
     const child2: TipTapNode = {
       type: "img",
       src: "https://images.com/hi.jpeg",
       alt: "some-image"
     }
-
+    // wrap in a document
     const node: TipTapNode = {
       type: "doc",
       content: [child1, child2]
@@ -74,5 +73,68 @@ describe("TipTapRender", () => {
     const actual = render(<TipTapRender handlers={handlers} node={node} />);
     expect(actual.getByText(child1.text)).toBeInTheDocument();
     expect(actual.getByAltText(child2.alt)).toHaveAttribute("src", child2.src);
+  });
+
+  test("renders depth 3", () => {
+    // create a dummy renderer
+    const doc: NodeRenderer = (props) => (<>{props.children}</>)
+    const text: NodeRenderer = (props) => (<span>{props.node.text}</span>)
+    const paragraph: NodeRenderer = (props) => (<p>{props.children}</p>)
+    // create a handler
+    const handlers: NodeHandlers = {
+      "doc": doc,
+      "text": text,
+      "paragraph": paragraph,
+    }
+    // paragraph with text in it
+    const p1: TipTapNode = {
+      type: "paragraph",
+      content: [{
+        type: "text",
+        text: "hello"
+      }]
+    }
+    // wrap in document
+    const node: TipTapNode = {
+      type: "doc",
+      content: [p1]
+    }
+    // render it!
+    const actual = render(<TipTapRender handlers={handlers} node={node} />);
+    expect(actual.getByText("hello")).toBeInTheDocument();
+  });
+
+  test("no-op on unhandled type", () => {
+    // create a dummy renderer
+    const doc: NodeRenderer = (props) => (<>{props.children}</>)
+    const paragraph: NodeRenderer = (props) => (<p>{props.children}</p>)
+    const text: NodeRenderer = (props) => (<span>{props.node.text}</span>)
+    // create a handler
+    const handlers: NodeHandlers = {
+      "doc": doc,
+      "text": text,
+      "paragraph": paragraph,
+    }
+    // paragraph with text in it
+    const p1: TipTapNode = {
+      type: "paragraph",
+      content: [{type: "text", text: "text 1"}]
+    }
+    // unhandled type with text in it
+    const p2: TipTapNode = {
+      type: "bad-type",
+      content: [{type: "text", text: "text 2"}]
+    }
+    // wrap in document
+    const node: TipTapNode = {
+      type: "doc",
+      content: [p1, p2]
+    }
+    // render it!
+    const actual = render(<TipTapRender handlers={handlers} node={node} />);
+    // text 1 should render
+    expect(actual.getByText("text 1")).toBeInTheDocument();
+    // text 2 should not!
+    expect(actual.queryByText("text 2")).toBeNull();
   });
 });
