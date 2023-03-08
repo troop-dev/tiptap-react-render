@@ -66,8 +66,8 @@ const Passthrough: NodeRenderer = (props) => {
 }
 
 const Image: NodeRenderer = (props) => {
-  const {src, alt, title} = props.node?.attrs;
-  return <img alt={alt} src={src} title={title} />
+  const attrs = props.node.attrs
+  return <img alt={attrs?.alt} src={attrs?.src} title={attrs?.title} />
 }
 
 export const SampleMapping: NodeHandlers = {
