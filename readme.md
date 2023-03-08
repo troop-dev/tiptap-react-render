@@ -2,6 +2,12 @@
 
 This tool enables rendering TipTap JSON payloads in React clients without embedding the editor.
 
+### Installation
+```sh
+# TODO
+```
+
+### Usage
 ```ts
 // TODO: sample
 ```
