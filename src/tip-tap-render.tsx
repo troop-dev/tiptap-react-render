@@ -2,19 +2,19 @@ import React from 'react';
 
 /**
  * Render a tip tap JSON node and all its children
- * @param node the JSON node to render
- * @param mappings a handler for each node type
+ * @param {TipTapNode} node JSON node to render
+ * @param {NodeHandlers} handlers a handler for each node type
  * @returns tree of components as react elements
  */
-export default function TipTapRender(props: {node: TipTapNode, mapping: NodeHandlers}): JSX.Element {
-  const {node, mapping} = props;
+export default function TipTapRender(props: {node: TipTapNode, handlers: NodeHandlers}): JSX.Element {
+  const {node, handlers: mapping} = props;
   // recursively render child content
   const children: JSX.Element[] = [];
   node.content && node.content.forEach((child, ix) => {
     children.push(
       <TipTapRender
         node={child}
-        mapping={mapping}
+        handlers={mapping}
         key={`${child.type}-${ix}`}
       />
     )
