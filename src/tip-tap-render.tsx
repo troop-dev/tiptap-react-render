@@ -46,8 +46,8 @@ export interface NodeProps {
   node: TipTapNode;
 }
 
-export type NodeRenderer = (props: NodeProps) => JSX.Element
+export type NodeHandler = (props: NodeProps) => JSX.Element
 
 export interface NodeHandlers {
-  readonly [attr: string]: NodeRenderer
+  readonly [attr: string]: NodeHandler
 }

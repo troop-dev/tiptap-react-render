@@ -1,12 +1,12 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import TipTapRender, { NodeHandlers, NodeRenderer, TipTapNode } from "./tip-tap-render";
+import TipTapRender, { NodeHandlers, NodeHandler, TipTapNode } from "./tip-tap-render";
 
 
 describe("TipTapRender", () => {
   test("renders an empty node", () => {
     // create a dummy renderer
-    const dummy: NodeRenderer = (props) => (<div id="some-id">this a doc</div>)
+    const dummy: NodeHandler = (props) => (<div id="some-id">this a doc</div>)
     // create a handler
     const handlers: NodeHandlers = {
       "doc": dummy,
@@ -22,8 +22,8 @@ describe("TipTapRender", () => {
 
   test("renders a child node", () => {
     // create a dummy renderer
-    const parent: NodeRenderer = (props) => (<>{props.children}</>)
-    const child: NodeRenderer = (props) => (<>{props.node.text}</>)
+    const parent: NodeHandler = (props) => (<>{props.children}</>)
+    const child: NodeHandler = (props) => (<>{props.node.text}</>)
     // create a handler
     const handlers: NodeHandlers = {
       "doc": parent,
@@ -44,9 +44,9 @@ describe("TipTapRender", () => {
 
   test("renders 2 children", () => {
     // create a dummy renderer
-    const doc: NodeRenderer = (props) => (<>{props.children}</>)
-    const text: NodeRenderer = (props) => (<div>{props.node.text}</div>)
-    const img: NodeRenderer = (props) => (<img src={props.node.src} alt={props.node.alt}/>)
+    const doc: NodeHandler = (props) => (<>{props.children}</>)
+    const text: NodeHandler = (props) => (<div>{props.node.text}</div>)
+    const img: NodeHandler = (props) => (<img src={props.node.src} alt={props.node.alt}/>)
     // create a handler
     const handlers: NodeHandlers = {
       "doc": doc,
@@ -77,9 +77,9 @@ describe("TipTapRender", () => {
 
   test("renders depth 3", () => {
     // create a dummy renderer
-    const doc: NodeRenderer = (props) => (<>{props.children}</>)
-    const text: NodeRenderer = (props) => (<span>{props.node.text}</span>)
-    const paragraph: NodeRenderer = (props) => (<p>{props.children}</p>)
+    const doc: NodeHandler = (props) => (<>{props.children}</>)
+    const text: NodeHandler = (props) => (<span>{props.node.text}</span>)
+    const paragraph: NodeHandler = (props) => (<p>{props.children}</p>)
     // create a handler
     const handlers: NodeHandlers = {
       "doc": doc,
@@ -106,9 +106,9 @@ describe("TipTapRender", () => {
 
   test("no-op on unhandled type", () => {
     // create a dummy renderer
-    const doc: NodeRenderer = (props) => (<>{props.children}</>)
-    const paragraph: NodeRenderer = (props) => (<p>{props.children}</p>)
-    const text: NodeRenderer = (props) => (<span>{props.node.text}</span>)
+    const doc: NodeHandler = (props) => (<>{props.children}</>)
+    const paragraph: NodeHandler = (props) => (<p>{props.children}</p>)
+    const text: NodeHandler = (props) => (<span>{props.node.text}</span>)
     // create a handler
     const handlers: NodeHandlers = {
       "doc": doc,

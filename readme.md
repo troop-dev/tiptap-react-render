@@ -9,7 +9,41 @@ This tool enables rendering TipTap JSON payloads in React clients without embedd
 
 ### Usage
 ```ts
-// TODO: sample
+// create handler components
+const doc: NodeHandler = (props) => (<>{props.children}</>)
+const paragraph: NodeHandler = (props) => (<p>{props.children}</p>)
+const text: NodeHandler = (props) => (<span>{props.node.text}</span>)
+const img: NodeHandler = (props) => (<img src={props.node.src} />)
+
+// create a handlers wrapper
+const handlers: NodeHandlers = {
+  "doc": doc,
+  "text": text,
+  "paragraph": paragraph,
+  "img": img,
+}
+
+// sample tip tap data
+const data = {
+  type: "doc",
+  content: [
+    {
+      type: "paragraph",
+      content: [{
+        type: "text",
+        text: "hello world"
+      }],
+      type: "paragraph",
+      content: [{
+        type: "img",
+        src: "https://some-url.com/img.jpg",
+        alt: "some alt text"
+      }]
+    }
+  ]
+}
+// render it!
+const rendered = <TipTapRender handlers={handlers} node={data} />
 ```
 
 ### Why?
