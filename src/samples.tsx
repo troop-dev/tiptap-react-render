@@ -3,7 +3,7 @@ import { NodeHandlers, NodeProps, NodeRenderer } from "./tip-tap-render"
 
 const TextRender: NodeRenderer = (props: NodeProps) => {
 
-  if (!props.node?.text) {
+  if (!props.node.text) {
     console.log("missing text", props)
     return <></>
   }
