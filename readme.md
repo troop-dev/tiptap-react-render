@@ -8,7 +8,7 @@ This tool enables rendering TipTap JSON payloads in React clients without embedd
 ```
 
 ### Usage
-```ts
+```typescript
 // create handler components
 const doc: NodeHandler = (props) => (<>{props.children}</>)
 const paragraph: NodeHandler = (props) => (<p>{props.children}</p>)
