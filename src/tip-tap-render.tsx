@@ -20,7 +20,7 @@ export default function TipTapRender(props: {node: TipTapNode, handlers: NodeHan
     )
   })
   // return empty if we are missing a handler for this type
-  if (!(node.type in Object)) {
+  if (!(node.type in props.handlers)) {
     console.warn(`missing type`, node)
     return <></>
   }
@@ -35,8 +35,8 @@ interface Attrs {
 
 export interface TipTapNode {
   type: string
-  attrs: Attrs
-  marks: Attrs[]
+  attrs?: Attrs
+  marks?: Attrs[]
   content?: TipTapNode[]
   readonly [attr: string]: any;
 }
