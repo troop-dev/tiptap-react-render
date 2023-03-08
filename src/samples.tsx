@@ -1,7 +1,7 @@
 import React from 'react';
-import { NodeHandlers, NodeProps, NodeRenderer } from "./tip-tap-render"
+import { NodeHandlers, NodeProps, NodeHandler } from "./tip-tap-render"
 
-const TextRender: NodeRenderer = (props: NodeProps) => {
+const TextRender: NodeHandler = (props: NodeProps) => {
 
   if (!props.node.text) {
     console.log("missing text", props)
@@ -42,7 +42,7 @@ const TextRender: NodeRenderer = (props: NodeProps) => {
   return <span style={style}>{payload}</span>
 }
 
-const Paragraph: NodeRenderer = (props) => {
+const Paragraph: NodeHandler = (props) => {
   // dynamically process text marks
   let style: React.CSSProperties = {}
 
@@ -57,15 +57,15 @@ const Paragraph: NodeRenderer = (props) => {
   return (<><p style={style}>{props.children}</p></>)
 }
 
-const HardBreak: NodeRenderer = (props) => {
+const HardBreak: NodeHandler = (props) => {
   return (<br/>)
 }
 
-const Passthrough: NodeRenderer = (props) => {
+const Passthrough: NodeHandler = (props) => {
   return (<>{props.children}</>)
 }
 
-const Image: NodeRenderer = (props) => {
+const Image: NodeHandler = (props) => {
   const attrs = props.node.attrs
   return <img alt={attrs?.alt} src={attrs?.src} title={attrs?.title} />
 }
