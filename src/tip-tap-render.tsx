@@ -10,7 +10,7 @@ export default function TipTapRender(props: {node: TipTapNode, mapping: NodeHand
   const {node, mapping} = props;
   // recursively render child content
   const children: JSX.Element[] = [];
-  node?.content && node.content.forEach((child, ix) => {
+  node.content && node.content.forEach((child, ix) => {
     children.push(
       <TipTapRender
         node={child}

@@ -15,7 +15,7 @@ const TextRender: NodeRenderer = (props: NodeProps) => {
 
   // dynamically process text marks
   props.node?.marks && props.node.marks.forEach(mark => {
-    switch (mark?.type) {
+    switch (mark.type) {
       case 'bold':
         style.fontWeight = 'bold'
         break;
@@ -26,7 +26,7 @@ const TextRender: NodeRenderer = (props: NodeProps) => {
         style.textDecorationLine = 'underline'
         break;
       case 'textStyle':
-        const markAttrs = mark?.attrs
+        const markAttrs = mark.attrs
         if (!!markAttrs?.color) {
           style.color = markAttrs.color
         }
@@ -46,15 +46,15 @@ const Paragraph: NodeRenderer = (props) => {
   // dynamically process text marks
   let style: React.CSSProperties = {}
 
-  if (!!props.node?.attrs) {
+  if (!!props.node.attrs) {
     const attrs = props.node.attrs;
 
-    if (attrs?.textAlign) {
+    if (attrs.textAlign) {
       style.textAlign = attrs.textAlign;
     }
   }
 
-  return (<><p style={style}>{props?.children}</p></>)
+  return (<><p style={style}>{props.children}</p></>)
 }
 
 const HardBreak: NodeRenderer = (props) => {
@@ -62,7 +62,7 @@ const HardBreak: NodeRenderer = (props) => {
 }
 
 const Passthrough: NodeRenderer = (props) => {
-  return (<>{props?.children}</>)
+  return (<>{props.children}</>)
 }
 
 const Image: NodeRenderer = (props) => {
