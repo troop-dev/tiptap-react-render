@@ -1,1 +1,3 @@
-export const Greeter = (name: string) => `Hello ${name}`;
+import TipTapRender from "./tip-tap-render";
+
+export default TipTapRender;

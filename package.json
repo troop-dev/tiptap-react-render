@@ -2,23 +2,26 @@
   "name": "tiptap-react-render",
   "version": "0.0.1",
   "description": "Render TipTap JSON in React without the editor!",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "repository": "git@github.com:troop-dev/tiptap-react-render",
+  "scripts": {
+    "rollup": "rollup -c"
+  },
   "author": "zen@troop.com",
   "license": "MIT",
-  "scripts": {
-    "build": "tsc",
-    "test": "echo no tests yet",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json"
-
-  },
   "devDependencies": {
-    "typescript": "^4.9.5",
-    "prettier": "^2.8.4",
-    "tslint": "^6.1.3",
-    "tslint-config-prettier": "^1.18.0"
+    "@rollup/plugin-commonjs": "^21.1.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-typescript": "^8.5.0",
+    "@types/react": "^17.0.53",
+    "react": "^17.0.2",
+    "rollup": "^2.79.1",
+    "rollup-plugin-dts": "^4.2.3",
+    "tslib": "^2.5.0",
+    "typescript": "^4.9.5"
   },
-  "files": ["lib/**/*"]
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts"
 }
