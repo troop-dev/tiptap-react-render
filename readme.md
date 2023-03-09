@@ -33,7 +33,7 @@ const text: NodeHandler = (props) => {
 // handle an image
 const img: NodeHandler = (props) => {
   const { src, alt, title } = props.node;
-  return <><img src={src} alt={alt} title={title} /></>
+  return (<img src={src} alt={alt} title={title} />)
 }
 
 // create a handlers wrapper
