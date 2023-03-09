@@ -36,5 +36,9 @@
   "files": [
     "dist"
   ],
-  "types": "dist/index.d.ts"
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/troop-dev/tiptap-react-render"
+  }
 }
