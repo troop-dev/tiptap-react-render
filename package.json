@@ -6,7 +6,7 @@
     "rollup": "rollup -c",
     "test": "jest"
   },
-  "author": "zen@troop.com",
+  "author": "troop.com",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.21.0",
