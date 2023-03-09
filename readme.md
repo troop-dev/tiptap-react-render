@@ -4,7 +4,11 @@ This tool enables rendering TipTap JSON payloads in React clients without embedd
 
 ### Installation
 ```sh
-# TODO
+# npm
+npm install @troop.com/tiptap-react-render
+
+# yarn
+yarn add @troop.com/tiptap-react-render
 ```
 
 ### Usage
