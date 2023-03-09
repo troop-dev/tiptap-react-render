@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/v/@troop.com/tiptap-react-render.svg?style=flat)](https://www.npmjs.com/package/@troop.com/tiptap-react-render)
 [![npm](https://img.shields.io/npm/dt/@troop.com/tiptap-react-render)](https://www.npmjs.com/package/@troop.com/tiptap-react-render)
 
-This tool enables rendering TipTap JSON payloads in React clients without embedding the editor.
+This library renders [TipTap](https://tiptap.dev/) JSON payloads in React clients without embedding the editor.
 
 ### Installation
 ```sh
