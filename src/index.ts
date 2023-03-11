@@ -1,3 +1,10 @@
-import TipTapRender from "./tip-tap-render";
+import {
+  TipTapRender,
+  NodeHandler,
+  NodeHandlers,
+  NodeProps,
+  TipTapNode
+} from "./tip-tap-render";
 
+export { NodeHandler, NodeHandlers, NodeProps, TipTapNode, TipTapRender }
 export default TipTapRender;

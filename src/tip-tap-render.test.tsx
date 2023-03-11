@@ -1,7 +1,11 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import TipTapRender, { NodeHandlers, NodeHandler, TipTapNode } from "./tip-tap-render";
-
+import {
+  TipTapRender,
+  NodeHandlers,
+  NodeHandler,
+  TipTapNode,
+} from "./tip-tap-render";
 
 describe("TipTapRender", () => {
   test("renders an empty node", () => {
