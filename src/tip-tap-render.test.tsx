@@ -141,4 +141,48 @@ describe("TipTapRender", () => {
     // text 2 should not!
     expect(actual.queryByText("text 2")).toBeNull();
   });
+
+  test("link in a paragraph", () => {
+    // create a dummy renderer
+    const doc: NodeHandler = (props) => (<>{props.children}</>)
+    const paragraph: NodeHandler = (props) => (<p>{props.children}</p>)
+    const text: NodeHandler = (props) => (<span>{props.node.text}</span>)
+    const link: NodeHandler = (props) => (<a data-testid={"some-url"} href={props.node.attrs?.href}>{props.children}</a>)
+    // create a handler
+    const handlers: NodeHandlers = {
+      "doc": doc,
+      "text": text,
+      "paragraph": paragraph,
+      "link": link,
+    }
+    // paragraph with link in it
+    const url: string = "https://www.npmjs.com/package/@troop.com/tiptap-react-render"
+    const p1: TipTapNode = {
+      type: "paragraph",
+      content: [
+        {type: "text", text: "text 1"},
+        {
+          type: "link",
+          attrs: {
+            href : url
+          }
+        },
+        {type: "text", text: "text 2"},
+      ]
+    }
+    // wrap in document
+    const node: TipTapNode = {
+      type: "doc",
+      content: [p1]
+    }
+    // render it!
+    const actual = render(<TipTapRender handlers={handlers} node={node} />);
+    // text 1 and 2 should render
+    expect(actual.getByText("text 1")).toBeInTheDocument();
+    expect(actual.getByText("text 2")).toBeInTheDocument();
+    // link should be in the paragraph
+    const urlElement = actual.queryByTestId("some-url");
+    expect(urlElement).toBeInTheDocument();
+    expect(urlElement).toHaveAttribute("href", url);
+  });
 });
