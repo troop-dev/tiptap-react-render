@@ -6,7 +6,7 @@ import React from 'react';
  * @param {NodeHandlers} handlers a handler for each node type
  * @returns tree of components as react elements
  */
-export default function TipTapRender(props: {node: TipTapNode, handlers: NodeHandlers}): JSX.Element {
+export function TipTapRender(props: {node: TipTapNode, handlers: NodeHandlers}): JSX.Element {
   const {node, handlers: mapping} = props;
   // recursively render child content
   const children: JSX.Element[] = [];
